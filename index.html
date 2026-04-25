@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mfon Alfred — Brand Clarity & Strategic Messaging Consultant</title>
+<meta name="description" content="Mfon Alfred is a Brand Clarity & Strategic Messaging Consultant who helps founders move from confusion to clarity to communication using The Clarity System™.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black: #080808;
+  --deep: #0e0e0e;
+  --surface: #141414;
+  --surface2: #1a1a1a;
+  --gold: #b8966e;
+  --gold-light: #d4b896;
+  --gold-line: rgba(184,150,110,0.3);
+  --white: #f2ede6;
+  --muted: rgba(242,237,230,0.5);
+  --faint: rgba(242,237,230,0.08);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Jost', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: var(--sans); font-weight: 300; overflow-x: hidden; cursor: none; }
+
+.cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transition: transform 0.15s ease; }
+.cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid var(--gold-line); border-radius: 50%; pointer-events: none; z-index: 9998; transition: border-color 0.3s, transform 0.3s; }
+
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); opacity: 0.35; pointer-events: none; z-index: 1000; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, rgba(8,8,8,0.97) 0%, transparent 100%); }
+.nav-logo { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--white); text-decoration: none; }
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-line); padding: 11px 26px; text-decoration: none; transition: all 0.3s; }
+.nav-cta:hover { background: var(--gold); color: var(--black); }
+
+.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 160px 48px 100px; position: relative; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 75% 40%, rgba(184,150,110,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 15% 70%, rgba(184,150,110,0.03) 0%, transparent 60%); }
+.hero-line { position: absolute; right: 80px; top: 50%; transform: translateY(-50%); width: 1px; height: 35vh; background: linear-gradient(to bottom, transparent, var(--gold-line), transparent); }
+.hero-eyebrow { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 40px; display: flex; align-items: center; gap: 16px; opacity: 0; animation: fadeUp 1s ease 0.2s forwards; }
+.hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+.hero h1 { font-family: var(--serif); font-size: clamp(56px, 9vw, 120px); font-weight: 300; line-height: 0.92; letter-spacing: -2px; max-width: 850px; opacity: 0; animation: fadeUp 1s ease 0.4s forwards; }
+.hero h1 em { font-style: italic; color: var(--gold); font-weight: 300; }
+.hero-sub { margin-top: 52px; max-width: 480px; font-size: 15px; line-height: 1.9; color: var(--muted); opacity: 0; animation: fadeUp 1s ease 0.6s forwards; }
+.hero-actions { margin-top: 60px; display: flex; gap: 28px; align-items: center; flex-wrap: wrap; opacity: 0; animation: fadeUp 1s ease 0.8s forwards; }
+.btn-primary { background: var(--gold); color: var(--black); padding: 17px 44px; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; font-family: var(--sans); font-weight: 500; transition: all 0.3s; }
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-ghost { color: var(--muted); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: color 0.3s; }
+.btn-ghost::after { content: '→'; transition: transform 0.3s; }
+.btn-ghost:hover { color: var(--white); }
+.btn-ghost:hover::after { transform: translateX(4px); }
+.hero-scroll { position: absolute; bottom: 44px; left: 48px; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 16px; opacity: 0; animation: fadeUp 1s ease 1.1s forwards; }
+.hero-scroll::before { content: ''; width: 40px; height: 1px; background: var(--gold-line); }
+
+.divider { display: flex; align-items: center; gap: 24px; padding: 0 48px; margin: 60px 0; }
+.divider-line { flex: 1; height: 1px; background: var(--faint); }
+.divider-mark { font-family: var(--serif); font-size: 18px; color: var(--gold); font-style: italic; }
+
+/* ABOUT */
+.about { padding: 80px 48px 100px; max-width: 1200px; margin: 0 auto; }
+.about-top { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; margin-bottom: 80px; }
+.section-label { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; display: flex; align-items: center; gap: 16px; }
+.section-label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+.about h2 { font-family: var(--serif); font-size: clamp(38px, 4vw, 60px); font-weight: 300; line-height: 1.05; margin-bottom: 36px; }
+.about h2 em { font-style: italic; color: var(--gold); }
+.about-body p { font-size: 15px; line-height: 1.95; color: var(--muted); margin-bottom: 22px; }
+.about-body p strong { color: var(--white); font-weight: 400; }
+.about-body .highlight { font-family: var(--serif); font-size: 19px; font-style: italic; color: var(--gold-light); line-height: 1.6; border-left: 2px solid var(--gold-line); padding-left: 24px; margin-top: 32px; }
+
+.story-card { background: var(--surface); border: 1px solid var(--faint); padding: 52px 44px; position: relative; }
+.story-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); }
+.story-card-eye { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; }
+.story-card-quote { font-family: var(--serif); font-size: 22px; font-style: italic; font-weight: 300; line-height: 1.6; color: var(--white); margin-bottom: 32px; }
+.story-card-body p { font-size: 14px; line-height: 1.9; color: var(--muted); margin-bottom: 16px; }
+.story-card-body p strong { color: var(--gold-light); font-weight: 400; }
+.story-card-sig { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--faint); font-family: var(--serif); font-size: 18px; font-style: italic; color: var(--gold); }
+.story-card-sig small { display: block; font-family: var(--sans); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-style: normal; margin-top: 4px; }
+
+.about-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--faint); }
+.metric { background: var(--surface); padding: 36px 24px; text-align: center; }
+.metric-num { font-family: var(--serif); font-size: 44px; font-weight: 300; color: var(--gold); display: block; line-height: 1; margin-bottom: 10px; }
+.metric-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); line-height: 1.5; }
+
+/* SYSTEM */
+.system { padding: 100px 48px; background: var(--surface); position: relative; }
+.system::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-line), transparent); }
+.system-header { text-align: center; max-width: 640px; margin: 0 auto 80px; }
+.system-header .label { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: block; }
+.system-header h2 { font-family: var(--serif); font-size: clamp(36px, 4vw, 58px); font-weight: 300; line-height: 1.08; margin-bottom: 20px; }
+.system-header h2 em { font-style: italic; color: var(--gold); }
+.system-header p { font-size: 15px; line-height: 1.85; color: var(--muted); }
+
+.frameworks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1200px; margin: 0 auto; background: var(--faint); }
+.framework { background: var(--deep); padding: 56px 44px; position: relative; transition: background 0.4s; }
+.framework:hover { background: var(--surface2); }
+.framework-num { font-family: var(--serif); font-size: 90px; font-weight: 300; color: rgba(242,237,230,0.04); position: absolute; top: 16px; right: 20px; line-height: 1; user-select: none; }
+.framework-badge { display: inline-block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-line); padding: 6px 16px; margin-bottom: 28px; }
+.framework h3 { font-family: var(--serif); font-size: 26px; font-weight: 400; line-height: 1.2; margin-bottom: 10px; color: var(--white); }
+.framework-tagline { font-size: 13px; font-style: italic; font-family: var(--serif); color: var(--gold); margin-bottom: 20px; }
+.framework-desc { font-size: 14px; line-height: 1.85; color: var(--muted); margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--faint); }
+.framework-outcome { margin-bottom: 28px; }
+.framework-outcome-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.framework-outcome p { font-size: 13px; color: var(--white); font-family: var(--serif); font-style: italic; line-height: 1.5; }
+.framework-steps { display: flex; flex-direction: column; gap: 11px; }
+.framework-step { display: flex; gap: 14px; align-items: flex-start; font-size: 12px; color: var(--muted); line-height: 1.5; }
+.step-letter { color: var(--gold); font-family: var(--serif); font-size: 17px; font-weight: 600; line-height: 1; min-width: 14px; }
+.framework-deliverable { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--faint); font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+.framework-deliverable span { color: var(--gold-light); font-family: var(--serif); font-style: italic; font-size: 13px; }
+
+/* OFFERS */
+.offers { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+.offers-header { margin-bottom: 72px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; }
+.offers-header .label { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: block; }
+.offers-header h2 { font-family: var(--serif); font-size: clamp(36px, 4vw, 58px); font-weight: 300; line-height: 1.05; }
+.offers-header h2 em { font-style: italic; color: var(--gold); }
+.offers-header-note { font-size: 14px; line-height: 1.9; color: var(--muted); }
+.offers-header-note strong { color: var(--white); font-weight: 400; }
+.offers-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--faint); }
+.offer-card { background: var(--surface); padding: 52px 44px; position: relative; transition: background 0.3s; display: flex; flex-direction: column; }
+.offer-card:hover { background: var(--surface2); }
+.offer-card.featured { background: var(--surface2); grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.offer-card.featured::after { content: 'FLAGSHIP'; position: absolute; top: 28px; right: 28px; font-size: 9px; letter-spacing: 3px; color: var(--gold); border: 1px solid var(--gold-line); padding: 5px 12px; }
+.offer-tier { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+.offer-name { font-family: var(--serif); font-size: 32px; font-weight: 400; line-height: 1.1; margin-bottom: 12px; color: var(--white); }
+.offer-tagline { font-family: var(--serif); font-size: 15px; font-style: italic; color: var(--gold); margin-bottom: 24px; }
+.offer-desc { font-size: 14px; line-height: 1.9; color: var(--muted); margin-bottom: 28px; }
+.offer-desc strong { color: var(--white); font-weight: 400; }
+.offer-result { background: var(--deep); border-left: 2px solid var(--gold); padding: 18px 20px; margin-bottom: 28px; }
+.offer-result-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.offer-result p { font-family: var(--serif); font-size: 15px; font-style: italic; color: var(--white); line-height: 1.5; }
+.offer-what-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.offer-includes { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 36px; }
+.offer-includes li { font-size: 13px; color: var(--muted); display: flex; align-items: flex-start; gap: 14px; line-height: 1.55; }
+.offer-includes li::before { content: ''; width: 16px; height: 1px; background: var(--gold); flex-shrink: 0; margin-top: 9px; }
+.offer-footer { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 28px; border-top: 1px solid var(--faint); margin-top: auto; }
+.offer-price { font-family: var(--serif); font-size: 30px; font-weight: 300; color: var(--gold); }
+.offer-price small { display: block; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-family: var(--sans); margin-bottom: 4px; }
+.offer-cta { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--black); background: var(--gold); padding: 13px 26px; text-decoration: none; transition: all 0.3s; font-family: var(--sans); }
+.offer-cta:hover { background: var(--gold-light); }
+.offer-cta-ghost { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold-line); padding-bottom: 2px; transition: all 0.3s; font-family: var(--sans); }
+.offer-cta-ghost:hover { border-color: var(--gold); }
+
+/* PROCESS */
+.process { padding: 100px 48px; background: var(--surface); position: relative; }
+.process::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-line), transparent); }
+.process-inner { max-width: 860px; margin: 0 auto; }
+.process-header { text-align: center; margin-bottom: 80px; }
+.process-header .label { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: block; }
+.process-header h2 { font-family: var(--serif); font-size: clamp(36px, 4vw, 54px); font-weight: 300; line-height: 1.1; margin-bottom: 20px; }
+.process-header h2 em { font-style: italic; color: var(--gold); }
+.process-header p { font-size: 15px; line-height: 1.85; color: var(--muted); max-width: 520px; margin: 0 auto; }
+.steps { display: flex; flex-direction: column; position: relative; }
+.steps::before { content: ''; position: absolute; left: 27px; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--gold-line), transparent); }
+.step { display: flex; gap: 48px; align-items: flex-start; padding: 52px 0; border-bottom: 1px solid var(--faint); }
+.step:last-child { border-bottom: none; }
+.step-icon { width: 55px; height: 55px; border: 1px solid var(--gold-line); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 20px; font-weight: 300; color: var(--gold); flex-shrink: 0; background: var(--deep); position: relative; z-index: 1; }
+.step-content h3 { font-family: var(--serif); font-size: 28px; font-weight: 400; margin-bottom: 14px; color: var(--white); }
+.step-content p { font-size: 14px; line-height: 1.9; color: var(--muted); margin-bottom: 16px; }
+.step-content p strong { color: var(--white); font-weight: 400; }
+.step-tag { display: inline-block; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-line); padding: 5px 12px; margin-top: 8px; }
+
+/* STATEMENT */
+.statement { padding: 100px 48px; text-align: center; max-width: 860px; margin: 0 auto; }
+.statement .label { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 48px; display: block; }
+.statement-quote { font-family: var(--serif); font-size: clamp(26px, 4vw, 46px); font-weight: 300; font-style: italic; line-height: 1.4; color: var(--white); margin-bottom: 40px; }
+.statement-quote em { color: var(--gold); font-style: normal; }
+.statement-attr { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
+.statement-attr span { color: var(--gold); }
+
+/* CONTACT */
+.contact { padding: 100px 48px; background: var(--surface); position: relative; overflow: hidden; }
+.contact::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(184,150,110,0.04) 0%, transparent 70%); }
+.contact::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-line), transparent); }
+.contact-inner { max-width: 680px; margin: 0 auto; text-align: center; position: relative; }
+.contact .label { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; display: block; }
+.contact h2 { font-family: var(--serif); font-size: clamp(40px, 5.5vw, 72px); font-weight: 300; line-height: 1.02; margin-bottom: 28px; }
+.contact h2 em { font-style: italic; color: var(--gold); }
+.contact-intro { font-size: 15px; line-height: 1.85; color: var(--muted); margin-bottom: 56px; }
+.contact-form { display: flex; flex-direction: column; gap: 18px; text-align: left; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.form-group { display: flex; flex-direction: column; gap: 9px; }
+.form-group label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
+.form-group input, .form-group select, .form-group textarea { background: var(--deep); border: 1px solid var(--faint); border-bottom: 1px solid rgba(242,237,230,0.15); color: var(--white); padding: 16px 20px; font-family: var(--sans); font-size: 14px; font-weight: 300; outline: none; transition: border-color 0.3s; width: 100%; -webkit-appearance: none; appearance: none; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-bottom-color: var(--gold); }
+.form-group textarea { resize: vertical; min-height: 130px; }
+.form-group select option { background: #141414; }
+.form-submit { background: var(--gold); color: var(--black); border: none; padding: 20px 40px; font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; cursor: none; transition: all 0.3s; margin-top: 8px; width: 100%; }
+.form-submit:hover { background: var(--gold-light); }
+.form-note { text-align: center; font-size: 12px; color: var(--muted); margin-top: 16px; font-style: italic; font-family: var(--serif); }
+#form-success { display: none; padding: 64px 0; text-align: center; }
+#form-success h3 { font-family: var(--serif); font-size: 40px; font-style: italic; font-weight: 300; color: var(--gold); margin-bottom: 16px; }
+#form-success p { font-size: 14px; color: var(--muted); line-height: 1.9; }
+
+footer { padding: 64px 48px; border-top: 1px solid var(--faint); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; }
+.footer-logo { font-family: var(--serif); font-size: 22px; font-weight: 300; color: var(--white); }
+.footer-logo em { font-style: italic; color: var(--gold); }
+.footer-center { text-align: center; font-family: var(--serif); font-size: 13px; font-style: italic; color: var(--muted); }
+.footer-right { text-align: right; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(242,237,230,0.18); }
+
+@media (max-width: 768px) {
+  nav { padding: 22px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 130px 24px 80px; }
+  .hero-line { display: none; }
+  .about { padding: 60px 24px 80px; }
+  .about-top { grid-template-columns: 1fr; gap: 52px; }
+  .about-metrics { grid-template-columns: repeat(2, 1fr); }
+  .system { padding: 60px 24px; }
+  .frameworks { grid-template-columns: 1fr; }
+  .offers { padding: 60px 24px; }
+  .offers-header { grid-template-columns: 1fr; gap: 24px; }
+  .offers-grid { grid-template-columns: 1fr; }
+  .offer-card.featured { grid-column: span 1; grid-template-columns: 1fr; gap: 0; }
+  .offer-card.featured::after { display: none; }
+  .process { padding: 60px 24px; }
+  .statement { padding: 80px 24px; }
+  .contact { padding: 60px 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { grid-template-columns: 1fr; text-align: center; padding: 48px 24px; gap: 16px; }
+  .footer-right { text-align: center; }
+  .divider { padding: 0 24px; }
+  .step { gap: 24px; }
+}
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.85s ease, transform 0.85s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Mfon <span>Alfred</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#system">The System</a></li>
+    <li><a href="#offers">Offers</a></li>
+    <li><a href="#process">Process</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book a Session</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-eyebrow">Brand Clarity & Strategic Messaging Consultant</div>
+  <h1>Clarity.<br><em>By Design.</em></h1>
+  <p class="hero-sub">You have a good business. You just can't explain it clearly yet. That's not a marketing problem — it's a clarity problem. And clarity is exactly what I build.</p>
+  <div class="hero-actions">
+    <a href="#offers" class="btn-primary">View Offers</a>
+    <a href="#system" class="btn-ghost">Discover The System</a>
+  </div>
+  <div class="hero-scroll">Scroll to explore</div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark">✦</div><div class="divider-line"></div></div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-top">
+    <div class="reveal">
+      <div class="section-label">Who I Am</div>
+      <h2>Not a designer.<br>Not a coach.<br><em>A strategist.</em></h2>
+      <div class="about-body">
+        <p>My name is <strong>Mfon Alfred</strong>. For a long time, I sat in rooms working for other people — building their visions, growing their brands, watching their businesses take shape — while something inside me kept saying: <em>this should be mine.</em></p>
+        <p>I hated it. Not the work itself — I was good at the work. I hated the feeling of pouring my thinking, my energy, and my clarity into something I didn't own. I knew I was built to build something of my own. I just had to find what it was.</p>
+        <p>What I kept noticing — in every business I observed, every founder I spoke to — was the same problem. <strong>Smart people with real businesses who couldn't explain what they did clearly.</strong> Not because they weren't intelligent. Because no one had helped them structure their thinking into language.</p>
+        <p>That was my thing. I could hear a confused founder describe their business for ten minutes and give them a clear one-sentence answer in return. I was drawn to words, structure, and strategy. I had struggled with clarity myself — and figured it out. And I saw this problem everywhere I looked.</p>
+        <p class="highlight">"I build clarity-driven brands by turning ideas into structured strategy, clear messaging, and words that actually work."</p>
+      </div>
+    </div>
+
+    <div class="reveal reveal-d1">
+      <div class="story-card">
+        <div class="story-card-eye">The Clarity System™ — Origin</div>
+        <div class="story-card-quote">"The most expensive thing in business isn't bad marketing. It's not knowing what you're marketing."</div>
+        <div class="story-card-body">
+          <p>Most founders I work with aren't failing because of bad products or poor effort. They're invisible because they're unclear. <strong>Unclear brands don't attract. They confuse.</strong> And confused audiences don't buy.</p>
+          <p>The Clarity System™ was built to solve this — permanently. Not with generic advice or aesthetic tweaks, but with <strong>structured thinking, proven frameworks, and language that actually works</strong> for the people who need to hear it.</p>
+          <p>This is not consulting from a textbook. This is a system built from observation, from grit, and from an obsession with turning confusion into something clean, clear, and powerful.</p>
+        </div>
+        <div class="story-card-sig">
+          Mfon Alfred
+          <small>Founder · The Clarity System™</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-metrics reveal">
+    <div class="metric"><span class="metric-num">3</span><span class="metric-label">Proprietary Frameworks</span></div>
+    <div class="metric"><span class="metric-num">4</span><span class="metric-label">Offer Tiers</span></div>
+    <div class="metric"><span class="metric-num">1</span><span class="metric-label">Structured System</span></div>
+    <div class="metric"><span class="metric-num">∞</span><span class="metric-label">Founders Who Need This</span></div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark">✦</div><div class="divider-line"></div></div>
+
+<!-- SYSTEM -->
+<section class="system" id="system">
+  <div class="system-header reveal">
+    <span class="label">The Engine</span>
+    <h2>Three frameworks.<br><em>One complete system.</em></h2>
+    <p>Most consultants give you advice. I give you a system. Every framework inside The Clarity System™ has a specific job — and together, they move you from confusion all the way to authority. You don't skip stages. You build properly.</p>
+  </div>
+
+  <div class="frameworks">
+    <div class="framework reveal">
+      <div class="framework-num">01</div>
+      <div class="framework-badge">C.A.S.E™</div>
+      <h3>The Brand Foundation System</h3>
+      <div class="framework-tagline">Turn confusion into structure</div>
+      <p class="framework-desc">Before you post, pitch, or promote anything — you need to know exactly who you are. C.A.S.E™ is the starting point for every founder I work with. It is a structured process of excavation and organisation that turns scattered ideas into a solid, usable brand foundation. Without this stage done properly, everything you build sits on sand.</p>
+      <div class="framework-outcome">
+        <div class="framework-outcome-label">What You Walk Away With</div>
+        <p>A brand that knows itself — and can be explained clearly in one sentence, to any room.</p>
+      </div>
+      <div class="framework-steps">
+        <div class="framework-step"><span class="step-letter">C</span><span><strong style="color:var(--white);font-weight:400">Clarity</strong> — Define your identity, purpose, and positioning. Who are you, really?</span></div>
+        <div class="framework-step"><span class="step-letter">A</span><span><strong style="color:var(--white);font-weight:400">Attract</strong> — Define your exact audience, your tone, and how your brand should sound.</span></div>
+        <div class="framework-step"><span class="step-letter">S</span><span><strong style="color:var(--white);font-weight:400">Systemize</strong> — Structure your offers, messaging, and brand flow into a coherent whole.</span></div>
+        <div class="framework-step"><span class="step-letter">E</span><span><strong style="color:var(--white);font-weight:400">Expand</strong> — Build a foundation designed to support intentional, structured growth.</span></div>
+      </div>
+      <div class="framework-deliverable">Deliverable → <span>Brand Clarity Blueprint™</span></div>
+    </div>
+
+    <div class="framework reveal reveal-d1">
+      <div class="framework-num">02</div>
+      <div class="framework-badge">C.L.E.A.R™</div>
+      <h3>The Messaging System</h3>
+      <div class="framework-tagline">Turn clarity into communication</div>
+      <p class="framework-desc">Knowing who you are is only half the work. The other half is saying it in a way that lands. C.L.E.A.R™ is the messaging layer — the system that takes your foundation and turns it into words, stories, and language that connects with the right people and moves them to act. This is where your brand finds its voice and learns to use it.</p>
+      <div class="framework-outcome">
+        <div class="framework-outcome-label">What You Walk Away With</div>
+        <p>A brand that speaks clearly, connects deeply, and sounds the same everywhere it shows up.</p>
+      </div>
+      <div class="framework-steps">
+        <div class="framework-step"><span class="step-letter">C</span><span><strong style="color:var(--white);font-weight:400">Communicate</strong> — Build your core message and positioning statement from the ground up.</span></div>
+        <div class="framework-step"><span class="step-letter">L</span><span><strong style="color:var(--white);font-weight:400">Lead</strong> — Develop a story structure that earns and guides your audience's attention.</span></div>
+        <div class="framework-step"><span class="step-letter">E</span><span><strong style="color:var(--white);font-weight:400">Engage</strong> — Create messaging that is emotional, relatable, and impossible to scroll past.</span></div>
+        <div class="framework-step"><span class="step-letter">A</span><span><strong style="color:var(--white);font-weight:400">Align</strong> — Ensure your voice is consistent across every platform and every touchpoint.</span></div>
+        <div class="framework-step"><span class="step-letter">R</span><span><strong style="color:var(--white);font-weight:400">Resonate</strong> — Build trust through the power of clarity, consistency, and repetition.</span></div>
+      </div>
+      <div class="framework-deliverable">Deliverable → <span>Messaging Guidebook™</span></div>
+    </div>
+
+    <div class="framework reveal reveal-d2">
+      <div class="framework-num">03</div>
+      <div class="framework-badge">B.R.I.G.H.T™</div>
+      <h3>The Growth & Authority System</h3>
+      <div class="framework-tagline">Turn communication into influence</div>
+      <p class="framework-desc">The final stage. You have your foundation. You have your message. Now it's time to be seen. B.R.I.G.H.T™ is the growth and authority layer — a structured system for building visibility, establishing thought leadership, and becoming the name that founders in your space trust and remember. This is where clarity becomes power.</p>
+      <div class="framework-outcome">
+        <div class="framework-outcome-label">What You Walk Away With</div>
+        <p>A brand that grows with structure — and becomes the trusted authority in its category.</p>
+      </div>
+      <div class="framework-steps">
+        <div class="framework-step"><span class="step-letter">B</span><span><strong style="color:var(--white);font-weight:400">Brand Clarity</strong> — Lock in who you are before you scale anything.</span></div>
+        <div class="framework-step"><span class="step-letter">R</span><span><strong style="color:var(--white);font-weight:400">Refine Messaging</strong> — Sharpen your communication for maximum impact.</span></div>
+        <div class="framework-step"><span class="step-letter">I</span><span><strong style="color:var(--white);font-weight:400">Identify Audience</strong> — Get precise about who you are building visibility for.</span></div>
+        <div class="framework-step"><span class="step-letter">G</span><span><strong style="color:var(--white);font-weight:400">Grow Visibility</strong> — Build a presence that earns attention consistently.</span></div>
+        <div class="framework-step"><span class="step-letter">H</span><span><strong style="color:var(--white);font-weight:400">Human Connection</strong> — Lead with authenticity. People follow people, not logos.</span></div>
+        <div class="framework-step"><span class="step-letter">T</span><span><strong style="color:var(--white);font-weight:400">Thought Leadership</strong> — Become the trusted voice in your category.</span></div>
+      </div>
+      <div class="framework-deliverable">Deliverable → <span>Growth & Positioning Map™</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERS -->
+<section class="offers" id="offers">
+  <div class="offers-header reveal">
+    <div>
+      <span class="label">Investment</span>
+      <h2>Choose your<br><em>entry point.</em></h2>
+    </div>
+    <div class="offers-header-note">
+      <p>You don't need to start at the top. You need to start at the <strong>right place for where you are right now.</strong> Every offer in The Clarity System™ is designed to build on the one before it — so wherever you begin, you are building toward the same destination: a brand that is clear, compelling, and impossible to ignore.</p>
+    </div>
+  </div>
+
+  <div class="offers-grid">
+
+    <div class="offer-card featured reveal">
+      <div>
+        <div class="offer-tier">Core Offer · Powered by C.A.S.E™</div>
+        <div class="offer-name">The Brand Blueprint™</div>
+        <div class="offer-tagline">Your complete brand foundation. Built once. Used everywhere.</div>
+        <p class="offer-desc">This is the flagship offer and the most important investment most founders will ever make. Before you run ads, hire a designer, or start posting content — you need a foundation. The Brand Blueprint™ gives you exactly that: a structured, documented brand identity that tells you who you are, who you serve, what you offer, and how to say it. <strong>Stop guessing. Start building on solid ground.</strong></p>
+        <div class="offer-result">
+          <div class="offer-result-label">What Clients Say After</div>
+          <p>"I finally have a complete brand foundation — something I can hand to anyone and say: this is exactly who we are."</p>
+        </div>
+      </div>
+      <div>
+        <div class="offer-what-label">What's Included</div>
+        <ul class="offer-includes">
+          <li>In-depth Brand Clarity Questionnaire to surface everything that matters</li>
+          <li>Deep-dive strategy session (60–90 min) — we think through it all together</li>
+          <li>Full Brand Clarity Blueprint document (5–7 pages) — your brand bible</li>
+          <li>Offer structuring — what you sell, how it's packaged, and how it's positioned</li>
+          <li>Messaging pillars — the 3–5 core ideas your brand is built on</li>
+          <li>Implementation checklist — exactly what to do the moment we finish</li>
+        </ul>
+        <div class="offer-footer">
+          <div class="offer-price"><small>Starting from</small>₦50,000</div>
+          <a href="#contact" class="offer-cta">Begin Here</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="offer-card reveal">
+      <div class="offer-tier">Entry Point · Access Offer</div>
+      <div class="offer-name">Brand Clarity Session™</div>
+      <div class="offer-tagline">Finally understand what your business actually is.</div>
+      <p class="offer-desc">The lowest-barrier way to experience The Clarity System™. If you've ever struggled to explain what you do, felt your message wasn't landing, or simply didn't know where to start with your brand — this session was built for that exact moment. In 60–90 minutes, we cut through the noise and find your clarity together. <strong>You leave knowing exactly what your business is and how to say it.</strong></p>
+      <div class="offer-result">
+        <div class="offer-result-label">The Result</div>
+        <p>"I finally understand what my business is — and I can explain it clearly for the first time."</p>
+      </div>
+      <div class="offer-what-label">What's Included</div>
+      <ul class="offer-includes">
+        <li>60–90 minute focused strategy session</li>
+        <li>Real-time clarity breakdown of your brand and positioning</li>
+        <li>1-page Brand Summary — your immediate reference point going forward</li>
+      </ul>
+      <div class="offer-footer">
+        <div class="offer-price"><small>Starting from</small>₦30,000</div>
+        <a href="#contact" class="offer-cta-ghost">Book Now</a>
+      </div>
+    </div>
+
+    <div class="offer-card reveal reveal-d1">
+      <div class="offer-tier">Strategic Offer · Powered by C.L.E.A.R™</div>
+      <div class="offer-name">The Messaging Intensive™</div>
+      <div class="offer-tagline">Where real differentiation happens.</div>
+      <p class="offer-desc">You know who you are. Now you need to learn how to say it in a way that stops people in their tracks. The Messaging Intensive™ takes everything in the Brand Blueprint and builds a complete communication system around it — your story, your voice, your positioning lines, and a clear content direction. <strong>This is where your brand stops sounding like everyone else.</strong></p>
+      <div class="offer-result">
+        <div class="offer-result-label">The Result</div>
+        <p>"My brand communicates with confidence. I know exactly what to say, how to say it, and why it works."</p>
+      </div>
+      <div class="offer-what-label">What's Included</div>
+      <ul class="offer-includes">
+        <li>Everything included in The Brand Blueprint™</li>
+        <li>Brand Story development — your origin, your why, your arc</li>
+        <li>Core messaging system — the exact language your brand speaks</li>
+        <li>Taglines and positioning lines crafted for your unique voice</li>
+        <li>Content direction framework — what to talk about and how</li>
+      </ul>
+      <div class="offer-footer">
+        <div class="offer-price"><small>Starting from</small>₦120,000</div>
+        <a href="#contact" class="offer-cta-ghost">Book Now</a>
+      </div>
+    </div>
+
+    <div class="offer-card reveal" style="grid-column: span 2;">
+      <div class="offer-tier">Premium Offer · Powered by B.R.I.G.H.T™</div>
+      <div class="offer-name">The B.R.I.G.H.T Growth Program™</div>
+      <div class="offer-tagline">A brand that is seen, trusted, and remembered.</div>
+      <p class="offer-desc">The complete Clarity System™ experience. This is for the founder who is done being invisible — who is ready to build a brand with real authority, real visibility, and a real plan for sustained growth. We build the foundation, craft the messaging, and create the full growth and thought leadership strategy that takes your brand from known to trusted. <strong>This is where you stop being a business and start being a name.</strong></p>
+      <div class="offer-what-label" style="margin-top:24px">What's Included</div>
+      <ul class="offer-includes" style="display:grid;grid-template-columns:1fr 1fr;gap:12px 48px;">
+        <li>Full brand foundation and clarity system (C.A.S.E™)</li>
+        <li>Complete messaging and communication system (C.L.E.A.R™)</li>
+        <li>30-day content direction plan — what to post, where, and why</li>
+        <li>Visibility and positioning strategy for your key platforms</li>
+        <li>Thought leadership roadmap — how to become the authority</li>
+        <li>Ongoing strategic check-ins and guidance throughout</li>
+      </ul>
+      <div class="offer-footer" style="margin-top:40px">
+        <div class="offer-price"><small>Starting from</small>₦250,000</div>
+        <a href="#contact" class="offer-cta">Apply Now</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-inner">
+    <div class="process-header reveal">
+      <span class="label">How It Works</span>
+      <h2>Simple. Structured.<br><em>Intentional.</em></h2>
+      <p>Every engagement with The Clarity System™ follows the same three-stage journey. You don't skip stages. You don't rush the process. You build it right — because the result needs to last.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-icon">1</div>
+        <div class="step-content">
+          <h3>Build It — C.A.S.E™</h3>
+          <p>Before anything else, we build your foundation. This is the most important stage — and the one most founders skip entirely. We go deep on who you are, what you do, who you serve, and how your offers are structured. <strong>You cannot communicate clearly what you haven't understood deeply.</strong> This stage ensures you understand it completely.</p>
+          <p>By the end of this stage, you have a Brand Clarity Blueprint that becomes your reference point for every business decision you make going forward — your brand bible.</p>
+          <span class="step-tag">Deliverable: Brand Clarity Blueprint™</span>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-icon">2</div>
+        <div class="step-content">
+          <h3>Speak It — C.L.E.A.R™</h3>
+          <p>Clarity without communication is invisible. This stage takes your foundation and turns it into language — <strong>your brand story, your core messaging, your positioning lines, and your voice.</strong> We build the words that represent you across every platform, every pitch, and every piece of content you will ever create.</p>
+          <p>This is where founders stop saying "I don't know how to explain what I do" — because now there is a clear, written answer ready to use anywhere.</p>
+          <span class="step-tag">Deliverable: Messaging Guidebook™</span>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-icon">3</div>
+        <div class="step-content">
+          <h3>Grow It — B.R.I.G.H.T™</h3>
+          <p>A brand that is built and spoken now needs to be seen. This final stage creates your growth strategy — <strong>your visibility plan, your thought leadership roadmap, and your 30-day content direction.</strong> We identify where your audience lives, how to reach them consistently, and how to show up in a way that builds trust over time.</p>
+          <p>This is where your brand stops being something you have — and starts being something the market knows and seeks out.</p>
+          <span class="step-tag">Deliverable: Growth & Positioning Map™</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement">
+  <span class="label reveal">The Philosophy</span>
+  <div class="statement-quote reveal">"You don't have a marketing problem.<br>You have a <em>clarity</em> problem.<br>And clarity is something we can fix."</div>
+  <div class="statement-attr reveal">— <span>Mfon Alfred</span> · Founder, The Clarity System™</div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <span class="label reveal">Ready to Begin</span>
+    <h2 class="reveal">Let's build your<br><em>clarity.</em></h2>
+    <p class="contact-intro reveal">Tell me where you are and what you're building. Whether you're a founder with a good business you can't explain, or someone starting from scratch with real conviction — there is an entry point in The Clarity System™ for you. Let's find it.</p>
+
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Full Name</label>
+          <input type="text" placeholder="What should I call you?" required>
+        </div>
+        <div class="form-group">
+          <label>WhatsApp Number or Email</label>
+          <input type="text" placeholder="Best way to reach you" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Which Offer Interests You?</label>
+        <select>
+          <option value="">Select your starting point</option>
+          <option>Brand Clarity Session™ — ₦30,000 (Entry Point)</option>
+          <option>The Brand Blueprint™ — from ₦50,000 (Core Offer)</option>
+          <option>The Messaging Intensive™ — from ₦120,000 (Strategic)</option>
+          <option>B.R.I.G.H.T Growth Program™ — from ₦250,000 (Premium)</option>
+          <option>I'm not sure yet — help me find where to start</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell Me About Your Business & What Feels Unclear</label>
+        <textarea placeholder="What do you do? Who do you serve? What's the biggest thing you're struggling to articulate right now?"></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send My Enquiry →</button>
+      <p class="form-note">I respond within 24 hours. No generic replies — every response is personal.</p>
+    </form>
+
+    <div id="form-success">
+      <h3>Received.</h3>
+      <p>Thank you for reaching out.<br>I'll be in touch within 24 hours.<br><br>Clarity is coming.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Mfon <em>Alfred</em></div>
+  <div class="footer-center">"Clarity before everything."</div>
+  <div class="footer-right">© 2025 · The Clarity System™</div>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = (mx - 4) + 'px';
+  cursor.style.top = (my - 4) + 'px';
+});
+
+(function animateRing() {
+  rx += (mx - rx - 18) * 0.12;
+  ry += (my - ry - 18) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animateRing);
+})();
+
+document.querySelectorAll('a, button, .framework, .offer-card').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; ring.style.transform = 'scale(1.6)'; ring.style.borderColor = 'rgba(184,150,110,0.7)'; });
+  el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; ring.style.transform = 'scale(1)'; ring.style.borderColor = 'rgba(184,150,110,0.3)'; });
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+function handleSubmit(e) {
+  e.preventDefault();
+  document.querySelector('.contact-form').style.display = 'none';
+  document.querySelector('.form-note').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
